@@ -273,11 +273,24 @@ height: initial;
 
     background-color: var(--warning);
     color:  var(--font-color-light);
+    font-size: 0.9rem;
 }
 .my_article .about_post {
 
     font-size: 1rem;
 }
+.my_blog{
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* width: 33rem; */
+
+}
+
+#contacts {
+
+    display: none;
+}
 
 }
