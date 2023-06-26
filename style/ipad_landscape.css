@@ -244,4 +244,22 @@ overflow: hidden;
     height: 80vh;
 }
 
+
+#job_history .nano-content{
+    padding: 2rem 2rem 2rem 6rem;   
+}
+
+
+#job_history h4{
+
+font-family:  "Nunito_light";
+
+}
+#job_history .wrapper {
+
+font-size:  2rem;
+
+}
+
+
 }
