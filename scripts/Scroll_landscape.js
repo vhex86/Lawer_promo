@@ -1,0 +1,97 @@
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    scrollMain();
+    
+  });
+  
+  function scrollMain (){
+  
+      let mediaQuery = window.matchMedia('(min-width: 1024px) and (orientation:landscape)');
+      handleTabletChange(mediaQuery); // добавляем эту строку
+      mediaQuery.addListener(handleTabletChange);
+  
+      function handleTabletChange(e){
+      
+       
+          if(e.matches ) {
+              
+              // console.log("Разрешение больше 1024 и ориентация экрана landscape");
+             
+              /*********************  Промотка до выбранного блока при смене разрешения*/
+              const parent = document.querySelector('#parent-container'); //выбираем родительский контейнер
+              const activeLink = document.querySelector('.active'); 
+
+              const hrefValue = activeLink.getAttribute('href').slice(1);
+              const targetBoxResize = document.querySelector(`.${hrefValue}`);
+              
+              const menu = document.querySelector('.mobile_menu');
+              const menuWidth = menu.offsetWidth;
+              const leftOffset = targetBoxResize.offsetLeft - menuWidth ;
+              if (targetBoxResize.classList.contains('box1')  ) { targetBoxResize.style.backgroundColor = '';} //если выбран первый блок при смене разрешения не менять фон 
+              else { targetBoxResize.style.backgroundColor = '#ecefeb';} //Иначе если выбран другой блок меняем фон 
+           
+              parent.scrollTo({
+                   left: leftOffset,
+                   top: 0,
+                   behavior: 'smooth'
+                   });
+              /*********************************** */
+                                     
+              let prevBlock = null; //статус предыдущего выбранного блока, если блок не выбран то псевдо false 
+                            document.querySelectorAll('.menu a').forEach(link => {
+                link.addEventListener('click', e => {
+                  e.preventDefault();
+                  const targetBoxClass = link.getAttribute('href').slice(1);
+                  const targetBox = document.querySelector(`.${targetBoxClass}`);
+                 // переменная для хранения предыдущего выбранного блока
+                  // изменяем стиль для активного блока
+                  if (prevBlock) {
+                    prevBlock.style.backgroundColor = '';
+                  }
+                  prevBlock = targetBox;
+                  
+                  if (targetBox.classList.contains('box1')) {
+                    targetBox.style.backgroundColor = '';
+                  } 
+                  else {
+                    targetBox.style.backgroundColor = "#ecefeb";
+                  }    
+                 
+                  const menu = document.querySelector('.mobile_menu');
+                  const menuWidth = menu.offsetWidth;
+                  const leftOffset = targetBox.offsetLeft - menuWidth ;
+                  parent.scrollTo({
+                    left: leftOffset,
+                    top: 0,
+                    behavior: 'smooth'
+                  });
+                });
+              });
+             
+          }
+  
+          else {
+            
+            /////////////
+            const activeLink = document.querySelector('.active');
+            const targetClass = activeLink.getAttribute('href').slice(1); // получение имени класса
+                  const targetBlock = document.querySelector(`.${targetClass}`);
+                  targetBlock.style.backgroundColor = '';
+                  targetBlock.scrollIntoView({ behavior: 'smooth' });
+           
+              const menuLinks = document.querySelectorAll('.menu a');
+                
+              menuLinks.forEach(link => { 
+                link.addEventListener('click', (event) => {
+                  event.preventDefault(); // отмена стандартного поведения ссылки
+                  const targetClass = link.getAttribute('href').slice(1); // получение имени класса
+                  const targetBlock = document.querySelector(`.${targetClass}`); // поиск первого элемента с указанным классом
+                  targetBlock.style.backgroundColor = ''; // при разрешении меньше 1024 не меняем цвет фона блоков
+                  targetBlock.scrollIntoView({ behavior: 'smooth' }); // проматываем до выбранного в меню блока - плавно.
+                  
+                });
+              });
+          }    
+      }
+  }

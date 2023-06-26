@@ -1,0 +1,98 @@
+
+:root{
+    box-sizing: border-box;
+    --brand-color: #262658;
+    --font-color-light: #fcfefb;
+    --light-accent: #dabc88;
+    --warning: #ea4e75;
+    --brand-color-light:#8888abfc;
+     font-size: calc(0.5em + 1vw);
+    
+     scrollbar-color: #2d2d5b #262658;
+     scrollbar-width: thin;
+
+
+}
+*,
+::before,
+::after {
+    box-sizing: inherit;
+}
+::-webkit-scrollbar {
+    width: 20px;
+  }
+
+ ::-webkit-scrollbar-track {
+    background-color: #262658;
+    border-radius: 100px;
+  }
+::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    border: 5px solid transparent;
+    background-clip: content-box;
+    background-color: #2d2d5b;
+  }
+  
+
+@font-face {
+font-family: "Nunito_Bold";
+src:url('../fonts/Nunito/static/Nunito-Bold.ttf')
+
+}
+
+@font-face{
+    font-family: "Nunito_light";
+    src:url('../fonts/Nunito/static/Nunito-Light.ttf')
+}
+@font-face{
+    font-family: "Nunito_regular";
+    src:url('../fonts/Nunito/static/Nunito-Regular.ttf')
+}
+html {
+    scroll-behavior: smooth;
+  }
+  
+body{
+    /* display: flex; */
+    background-color: var(--font-color-light);
+    color: var(--font-color-light);
+margin: 0;
+padding: 0;
+    }
+a{
+    color: var(--font-color-light);
+    text-decoration: none;
+    font-family: "Nunito_Bold";
+}
+
+footer {
+    background-color: var(--brand-color);
+height: auto;
+font-family: "Nunito_Bold";
+padding-top: 5.36193rem;
+padding-bottom: 3rem;
+font-size: 1.966rem;
+display: flex;
+justify-content: center;
+flex-direction: column;
+
+align-items: center;
+
+}
+footer p:last-child{
+    margin: 0;
+margin-top: 6.255585rem;
+color: var(--warning);
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+   
+    list-style: none;
+}
+
+* { 
+    -webkit-tap-highlight-color: transparent;
+
+}

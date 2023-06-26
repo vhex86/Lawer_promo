@@ -1,0 +1,247 @@
+@media(min-width:1024px) and (orientation:landscape) {
+    :root{
+        font-size: calc(0.5em + 1.2vw);
+
+    }
+body{
+
+    display: flex;
+    flex-direction: row;
+
+}
+main{
+height: 100vh;
+    display: flex;
+    flex-direction: row;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  
+}
+
+#main_button {
+
+    display: none;
+}
+header > h5 {
+    
+text-shadow: black 1px 3px 5px;
+background-color: var(--warning);
+color: var(--font-color-light);
+font-family: "Nunito_light";
+font-size: 2.5rem;
+font-weight: 200;
+min-height:8rem;
+max-width: 8rem;
+padding-left: 2.3rem;
+
+margin-top: 1.5839rem;
+}
+.header{
+    display: flex;
+    margin-bottom: -1px;
+  
+}
+.mobile_menu{
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+     height: auto;
+     width: 10rem;
+     margin: 0;
+    overflow:auto !important; 
+    display: flex;
+    flex-direction: column;
+   
+}
+.mobile_menu li{
+    margin-top: 1rem;
+}
+
+
+.wrapperForHeaderSection{
+background-color: var(--brand-color);
+position: fixed;
+z-index: 6;
+height: 100vh;
+overflow-x: hidden;
+overflow-y: auto;
+ 
+}
+
+  
+
+
+a.active{
+    font-size: 0.92rem;
+    border: none;
+    color:    var(--light-accent);
+}
+
+.mobile_menu a.active:before {
+   
+    float: initial;
+padding-right: 0.4rem;
+margin-right: 0.4rem; 
+}
+.mobile_menu a {
+    font-family: "Nunito_light";
+margin-bottom: 0.5rem;
+
+}
+.hide_wide_screen{
+    display: none;
+}
+.wide_screen_social{
+
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+font-size: 1rem;
+}
+
+.hello_john {
+ 
+    margin-left: 10rem;
+    background-color: var(--brand-color);
+    min-height:initial;
+    height: initial;
+    background-position: initial;
+    background-image:none;
+    min-width: 25rem;
+
+
+
+
+
+
+}
+.short_resume{
+
+   width: 80%;
+   flex: initial;
+}
+
+.short_resume p{
+font-size: 1.03231rem;
+
+}
+.red_label {
+flex-basis: 100%;
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+
+background-color: rgba(0, 0, 0,0);;
+color: var(--light-accent);
+margin-left: 2.46451rem;
+}
+.red_label p  {
+    font-size: 1.4554rem ;
+    
+}
+.red_label p:nth-child(1) {
+ 
+    padding: 0;
+    margin: 0;
+    font-size: 1.6765rem;
+}
+.red_label p:nth-child(2){
+    padding: 0;
+    margin: 0;
+    font-size: 1.6765rem;
+}
+
+.avatar_john{
+
+position: absolute;
+bottom: 0;
+
+right: 0;
+
+height: 30rem;
+width: 30rem;
+z-index: 1;
+background-image: none;
+overflow: hidden;
+
+
+}
+.avatar_john_for_landscape{
+    display: block;
+    position: absolute;
+    bottom: -1.9rem;
+    width: 100%;
+    background-image: url('../img/avatar_johnDoe.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    transform: rotate(-8deg);
+    height: 100%;
+
+}
+
+.number_telephone_mobile{
+    z-index: 3;
+    flex-basis: 100%;
+    display: flex;
+    justify-content: end;
+    font: 1.38067rem "Nunito_bold";
+
+}
+
+
+#Hello_john_anchor{
+    scroll-margin-left: 10rem;
+
+}
+
+#main_photo{
+    transform: scaleX(1);
+    transition: all ease-in 0.3s;
+}
+
+#menu a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.my_article {
+/* 1rem == 20.281px */
+    min-width: 30rem;
+   
+     padding: initial;
+     margin: initial;
+     padding: 2rem 2rem 2rem 6rem;
+    }
+  
+    .my_article h3{
+
+        /* 1rem 20.288px */
+        font-size: 2.31664rem;
+    }
+    .my_article p {
+        font-size: 1.18296rem;
+    
+    }
+    
+    #Resume .nano-content {
+    
+    padding: 2rem 2rem 2rem 6rem;
+    
+    
+    }
+    
+      .container_resume_button{
+
+        margin-bottom: 3rem; 
+      }
+
+#skills .nano-content {
+    padding: 2rem 2rem 2rem 6rem;   
+}
+
+.key_skills img {
+
+    display: block;
+    height: 80vh;
+}
+
+}
