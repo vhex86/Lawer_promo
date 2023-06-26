@@ -452,7 +452,7 @@ align-items: center;
  .avatar_john{
     flex: 1;
     flex-basis: 50%;
-    background-image: url("/img/avatar_iphone5.png");
+    background-image: url("../img/avatar_iphone5.png");
    
     width: 100%;
     background-repeat: no-repeat;

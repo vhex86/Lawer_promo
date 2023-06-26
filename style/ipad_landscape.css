@@ -255,10 +255,28 @@ overflow: hidden;
 font-family:  "Nunito_light";
 
 }
-#job_history .wrapper {
 
-font-size:  2rem;
+.job_place h4{
 
+font-size: 1rem;
+height: initial;
+}
+
+.my_article .post_name {
+
+    font-size: 1.5rem;
+    font-family: "Nunito_Bold";
+}
+
+.my_article .period {
+
+
+    background-color: var(--warning);
+    color:  var(--font-color-light);
+}
+.my_article .about_post {
+
+    font-size: 1rem;
 }
 
 

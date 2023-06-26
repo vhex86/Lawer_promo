@@ -45,7 +45,7 @@
     
 .avatar_john{
     /* display: none; */
-   background-image: url('/img/avatar_johnDoe.png');
+   background-image: url('../img/avatar_johnDoe.png');
 }
  
 
