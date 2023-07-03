@@ -1,45 +1,53 @@
-let divElement = document.getElementById('Blog');
-let imgElement = document.createElement('img');
 
-imgElement.src = './img/like.svg';
+
+let MatrixWithImgSrc = [ "./img/camera.svg", " ./img/like.svg" , "./img/video.svg", "./img/man.svg", "./img/bubble.svg" ];
+ 
 
 function placeImageRandomly() {
-    // Получение размеров и положения div
-    var divWidth = divElement.offsetWidth;
-    var divHeight = divElement.offsetHeight;
-    var divLeft = divElement.offsetLeft;
-    var divTop = divElement.offsetTop;
-  
-    // Вычисление случайных координат для изображения
-    var randomLeft = Math.random() * divWidth;
-    var randomTop = Math.random() * divHeight;
-  
-    // Установка позиции изображения
+  for (let i = 0; i <=10; i++) {
+ 
+    let imgElement = document.createElement('img');
+    let randomElement = Math.floor(Math.random() * 5);
+   
+    imgElement.src = MatrixWithImgSrc[randomElement];
+    
+
+    let divWidth = Blog.offsetWidth;
+    let divHeight = Blog.offsetHeight;
+   
+
+    let randomLeft = divWidth - (Math.random() * divWidth);
+    let randomTop = divHeight - (Math.random() * divHeight);
+
     imgElement.style.position = 'absolute';
-    imgElement.style.left = divLeft + randomLeft + 'px';
-    imgElement.style.top = divTop + randomTop + 'px';
-  
-    // Добавление изображения в div
-    divElement.appendChild(imgElement);
+    imgElement.style.top = randomTop + 'px';
+    imgElement.style.left = randomLeft + 'px';
+
+    Blog.appendChild(imgElement);
   }
-  
+}
+function removeImagesInBlogSection() {
+  let imgElements = document.querySelectorAll('#Blog img');
+  imgElements.forEach(function(imgElement) {
+    imgElement.remove();
+  });
+}
 
 
 let observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting && entry.intersectionRatio === 1) {
-        // Если элемент полностью попал в область видимости
-        alert('Common!');
-       
-        placeImageRandomly();
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting && entry.intersectionRatio === 1 )  {
+      placeImageRandomly();
+    }
+else {
+
+  removeImagesInBlogSection();
+}
 
 
+  });
+}, { threshold: 1 });
 
+let targetElement = document.querySelector('.button_blog');
+observer.observe(targetElement);
 
-      }
-    });
-  }, { threshold: 1 } ); // значение 1 в параметре threshold означает, что событие "пересечение" будет срабатывать только тогда, когда элемент полностью видим внутри наблюдаемой области (intersectionRatio равна 1). 
-  
-  let targetElement = document.querySelector('.button_blog');
-  observer.observe(targetElement);
-  

@@ -1,45 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
 <svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   id="svg848"
+   width="19.832684mm"
+   height="17.353598mm"
+   viewBox="0 0 19.832684 17.353598"
    version="1.1"
-   viewBox="0 0 19.832718 17.353628"
-   height="17.353628mm"
-   width="19.832718mm">
+   id="svg2894"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
   <defs
-     id="defs842" />
-  <metadata
-     id="metadata845">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
+     id="defs2891" />
   <g
-     transform="translate(-88.604853,-157.84122)"
-     id="layer1">
-    <flowRoot
-       transform="matrix(0.86116729,0,0,0.86116729,-79.363136,-253.67894)"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:23.03004074px;line-height:1;font-family:'last ninja';-inkscape-font-specification:'last ninja Bold';font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;opacity:1;vector-effect:none;fill:#2c2f37;fill-opacity:1;stroke:none;stroke-width:0.17689259;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     id="layer1"
+     transform="translate(-81.952302,-89.484215)">
+    <g
+       aria-label=""
+       transform="matrix(0.86116728,0,0,0.86116728,-86.015685,-322.03594)"
        id="flowRoot835"
-       xml:space="preserve"><flowRegion
-         style="stroke-width:0.17689259"
-         id="flowRegion837"><rect
-           style="stroke-width:0.17689259"
-           y="476.42444"
-           x="195.04762"
-           height="67.60173"
-           width="119.68831"
-           id="rect839" /></flowRegion><flowPara
-         style="stroke-width:0.17689259"
-         id="flowPara841"></flowPara></flowRoot>  </g>
+       style="font-weight:bold;font-size:23.03px;line-height:1;font-family:'last ninja';-inkscape-font-specification:'last ninja Bold';letter-spacing:0px;word-spacing:0px;baseline-shift:baseline;vector-effect:none;fill:#2c2f37;stroke-width:0.176893">
+      <path
+         d="m 200.80438,496.62075 v -10.07563 c 0,-0.80965 -0.67471,-1.43937 -1.43938,-1.43937 h -2.87875 c -0.80965,0 -1.43938,0.67471 -1.43938,1.43937 v 10.03065 c 0,0.76467 0.62973,1.39439 1.43938,1.39439 h 2.87875 c 0.76467,0.09 1.43938,-0.53976 1.43938,-1.34941 z m 17.2725,-10.03065 c 0,-1.21447 -0.98957,-2.15906 -2.15907,-2.15906 h -6.61213 c 1.03455,-1.70926 1.57432,-3.64342 1.57432,-4.31812 0,-1.07954 -0.85463,-2.20405 -2.24902,-2.20405 -2.83377,0 -1.1695,3.4635 -4.85789,6.38723 l -0.71969,0.58475 c -0.53977,0.4498 -0.80965,1.03455 -0.80965,1.66427 0,0.045 0,0 0,0 v 7.19688 c 0,0.71969 0.31486,1.34941 0.85463,1.75424 l 1.52934,1.12451 c 1.25945,0.94459 2.7438,1.43937 4.31812,1.43937 h 2.65385 c 1.16949,0 2.15906,-0.94459 2.15906,-2.11408 0,-0.17992 -0.045,-0.35984 -0.09,-0.49478 0.89961,-0.26989 1.52934,-1.07953 1.52934,-2.06911 0,-0.40482 -0.13495,-0.76466 -0.35985,-1.07953 1.03455,-0.2249 1.79922,-1.07953 1.79922,-2.11408 0,-0.58474 -0.2249,-1.07953 -0.58475,-1.48435 1.12452,-0.045 2.02413,-0.98957 2.02413,-2.11409 z"
+         id="path2931" />
+    </g>
+  </g>
 </svg>
