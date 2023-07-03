@@ -305,12 +305,38 @@ overflow: hidden;
 #Blog div {
     z-index: 100;
 }
-
 #Blog img {
-position: absolute;
-z-index: 1;
-opacity: 0.09;
-}
-
+    position: absolute;
+    z-index: 1;
+    opacity: 0.09;
+    transform: scale(0.8);
+    animation-name: fadeAndScale;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+   ;
+  }
+  
+  @keyframes fadeAndScale {
+    0% {
+      opacity: 0.09;
+      transform: scale(0.8);
+    }
+    50% {
+      opacity: 0.2;
+      transform: scale(1.2);
+    }
+    100% {
+      opacity: 0.09;
+      transform: scale(0.8);
+    }
+  }
+  .wrapper_blog{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(236, 239, 235,0.5);
+      
+  }    
 
 }
