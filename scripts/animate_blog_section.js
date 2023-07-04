@@ -29,7 +29,6 @@ function placeImageRandomly() {
       Blog.removeChild(imgElement); // Удаление изображения из контейнера
     }, 2000); // Задержка перед удалением
 
-    i++;
   }, 500); 
 
 }
