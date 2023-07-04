@@ -3,12 +3,13 @@
 let MatrixWithImgSrc = [ "./img/camera.svg", " ./img/like.svg" , "./img/video.svg", "./img/man.svg", "./img/bubble.svg" ];
 
 let interval;
+let imgElement; // Добавляем переменную для хранения текущего imgElement
 function placeImageRandomly() {
 
  interval = setInterval(() => {
    
 
-    let imgElement = document.createElement('img');
+    imgElement = document.createElement('img');
     let randomElement = Math.floor(Math.random() * 5);
    
     imgElement.src = MatrixWithImgSrc[randomElement];
@@ -26,7 +27,8 @@ function placeImageRandomly() {
     Blog.appendChild(imgElement);
   
     setTimeout(() => {
-      Blog.removeChild(imgElement); // Удаление изображения из контейнера
+      if (imgElement.parentNode === Blog) {
+      Blog.removeChild(imgElement);} // Удаление изображения из контейнера
     }, 2000); // Задержка перед удалением
 
   }, 500); 

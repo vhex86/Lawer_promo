@@ -31,15 +31,13 @@ document.addEventListener('DOMContentLoaded', function() {
               if (targetBoxResize.classList.contains('box1')  ) { targetBoxResize.style.backgroundColor = '';} //если выбран первый блок при смене разрешения не менять фон 
               else { targetBoxResize.style.backgroundColor = '#ecefeb';} //Иначе если выбран другой блок меняем фон 
            
-              parent.scrollTo({
-                   left: leftOffset,
-                   top: 0,
-                   behavior: 'smooth'
-                   });
+
               /*********************************** */
                                      
               let prevBlock = null; //статус предыдущего выбранного блока, если блок не выбран то псевдо false 
-                            document.querySelectorAll('.menu a').forEach(link => {
+                
+              
+              document.querySelectorAll('.menu a').forEach(link => {
                 link.addEventListener('click', e => {
                   e.preventDefault();
                   const targetBoxClass = link.getAttribute('href').slice(1);
@@ -68,9 +66,26 @@ document.addEventListener('DOMContentLoaded', function() {
                   });
                 });
               });
+
+
+                // Выбираем все элементы, которые начинаются с "box"
+const elements = document.querySelectorAll('[class^="box"]');
+console.log (elements);
+
+// Проходим по каждому элементу и назначаем обработчик событий
+elements.forEach(function(element) {
+  element.addEventListener('click', function() {
+    // Ваш код обработчика событий
+    console.log('Событие клика произошло на элементе:', element);
+  });
+
+});
+
              
           }
   
+
+
           else {
             
             /////////////
