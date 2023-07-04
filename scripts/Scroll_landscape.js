@@ -68,21 +68,68 @@ document.addEventListener('DOMContentLoaded', function() {
               });
 
 
-                // Выбираем все элементы, которые начинаются с "box"
-const elements = document.querySelectorAll('[class^="box"]');
-console.log (elements);
+              ///////////****  обработка жестов влево-вправо на элементах box */
+              // выбираем все элементы box
+              let startX = 0; // переменные для отслеживания перемещения пальца
+              let startY = 0;
+              let dist = 0;
+              
+              // добавляем слушателей на жесты к элементам box 
+                 parent.addEventListener('touchstart', handleTouchStart, true);
+                parent.addEventListener('touchmove', handleTouchMove, true);
+                parent.addEventListener('touchend', handleTouchEnd, true);
+              
+              function handleTouchStart(event) {
+                const firstTouch = event.touches[0];
+                startX = firstTouch.clientX;
+                startY = firstTouch.clientY;
+              }
+              
+              function handleTouchMove(event) {
+                if (!startX || !startY) {
+                  return;
+                }
+              
+                const touch = event.touches[0];
+                const currentX = touch.clientX;
+                const currentY = touch.clientY;
+                const distX = currentX - startX;
+                const distY = currentY - startY;
+              
+                // Проверяем, если перемещение по оси Y больше, чем по оси X, то игнорируем жест
+                if (Math.abs(distY) > Math.abs(distX)) {
+                  startX = 0;
+                  startY = 0;
+                  dist = 0;
+                  return;
+                }
+              
+                dist = distX;
+              }
+              
+              function handleTouchEnd() {
+                if (dist > 0) {
+                  console.log('Жест вправо');
+                  
+                  // Дополнительные действия при жесте вправо
+                
+                } else if (dist < 0) {
+                  console.log('Жест влево');
+              
+                  // Дополнительные действия при жесте влево
+                }
+              
+                startX = 0;
+                startY = 0;
+                dist = 0;
+              }
+              
+              /////////// ****  *************************/////////
+ 
 
-// Проходим по каждому элементу и назначаем обработчик событий
-elements.forEach(function(element) {
-  element.addEventListener('click', function() {
-    // Ваш код обработчика событий
-    console.log('Событие клика произошло на элементе:', element);
-  });
 
-});
 
-             
-          }
+            }
   
 
 
@@ -107,6 +154,17 @@ elements.forEach(function(element) {
                   
                 });
               });
+                  
+
+              const elementsBox = document.querySelectorAll('[class*="box"]'); // выбираем все элементы с классом box
+              // удаляем слушатели жестов
+              elementsBox.forEach((box) => {
+                box.removeEventListener('touchstart', handleTouchStart, true);
+                box.removeEventListener('touchmove', handleTouchMove, true);
+                box.removeEventListener('touchend', handleTouchEnd, true);
+              });
+
+
           }    
       }
   }
