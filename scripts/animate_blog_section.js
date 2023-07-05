@@ -4,7 +4,7 @@ let MatrixWithImgSrc = [ "./img/camera.svg", " ./img/like.svg" , "./img/video.sv
 
 let interval;
 let imgElement; // Добавляем переменную для хранения текущего imgElement
-function placeImageRandomly() {
+function placeImageRandomly(){
 
  interval = setInterval(() => {
    
@@ -27,7 +27,7 @@ function placeImageRandomly() {
     Blog.appendChild(imgElement);
   
     setTimeout(() => {
-      if (imgElement.parentNode === Blog) {
+       if (imgElement.parentNode === Blog) {
       Blog.removeChild(imgElement);} // Удаление изображения из контейнера
     }, 2000); // Задержка перед удалением
 
@@ -63,4 +63,3 @@ else {
 
 let targetElement = document.querySelector('.button_blog');
 observer.observe(targetElement);
-

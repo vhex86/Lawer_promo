@@ -73,11 +73,16 @@ document.addEventListener('DOMContentLoaded', function() {
               let startX = 0; // переменные для отслеживания перемещения пальца
               let startY = 0;
               let dist = 0;
-              
+              // Удаляем существующие слушатели событий touchstart, touchmove и touchend
+parent.removeEventListener('touchstart', handleTouchStart);
+parent.removeEventListener('touchmove', handleTouchMove);
+parent.removeEventListener('touchend', handleTouchEnd);
+
+
               // добавляем слушателей на жесты к элементам box 
-                 parent.addEventListener('touchstart', handleTouchStart, true);
-                parent.addEventListener('touchmove', handleTouchMove, true);
-                parent.addEventListener('touchend', handleTouchEnd, true);
+                 parent.addEventListener('touchstart', handleTouchStart, false);
+                parent.addEventListener('touchmove', handleTouchMove, false);
+                parent.addEventListener('touchend', handleTouchEnd, false);
               
               function handleTouchStart(event) {
                 const firstTouch = event.touches[0];
@@ -113,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   
                   // Дополнительные действия при жесте вправо
                 
+
                 } else if (dist < 0) {
                   console.log('Жест влево');
               

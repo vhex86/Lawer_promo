@@ -294,7 +294,7 @@ height: initial;
 }
 
 #Blog {
-    height: auto;
+    height: 100%;
 }
 
 }
