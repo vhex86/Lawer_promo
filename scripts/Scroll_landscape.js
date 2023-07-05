@@ -74,9 +74,9 @@ document.addEventListener('DOMContentLoaded', function() {
               let startY = 0;
               let dist = 0;
               // Удаляем существующие слушатели событий touchstart, touchmove и touchend
-parent.removeEventListener('touchstart', handleTouchStart);
-parent.removeEventListener('touchmove', handleTouchMove);
-parent.removeEventListener('touchend', handleTouchEnd);
+parent.removeEventListener('touchstart', handleTouchStart,false);
+parent.removeEventListener('touchmove', handleTouchMove,false);
+parent.removeEventListener('touchend', handleTouchEnd,false);
 
 
               // добавляем слушателей на жесты к элементам box 
@@ -113,9 +113,20 @@ parent.removeEventListener('touchend', handleTouchEnd);
               }
               
               function handleTouchEnd() {
+
+                const menuWidth = menu.offsetWidth;
+                const targetBoxClass = link.getAttribute('href').slice(1);
+                const targetBox = document.querySelector(`.${targetBoxClass}`);
+                const leftOffset = targetBox.offsetLeft - menuWidth ;
+
                 if (dist > 0) {
                   console.log('Жест вправо');
-                  
+                  // parent.scrollTo({
+                  //   left: leftOffset,
+                  //   top: 0,
+                  //   behavior: 'smooth'
+                  // });
+
                   // Дополнительные действия при жесте вправо
                 
 
@@ -165,9 +176,9 @@ parent.removeEventListener('touchend', handleTouchEnd);
               const elementsBox = document.querySelectorAll('[class*="box"]'); // выбираем все элементы с классом box
               // удаляем слушатели жестов
               elementsBox.forEach((box) => {
-                box.removeEventListener('touchstart', handleTouchStart, true);
-                box.removeEventListener('touchmove', handleTouchMove, true);
-                box.removeEventListener('touchend', handleTouchEnd, true);
+                box.removeEventListener('touchstart', handleTouchStart, false);
+                box.removeEventListener('touchmove', handleTouchMove, false);
+                box.removeEventListener('touchend', handleTouchEnd, false);
               });
 
 
