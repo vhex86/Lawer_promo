@@ -41,11 +41,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 link.addEventListener('click', e => {
                   e.preventDefault();
                   const targetBoxClass = link.getAttribute('href').slice(1);
-                  const targetBox = document.querySelector(`.${targetBoxClass}`);
-                 // переменная для хранения предыдущего выбранного блока
-                  // изменяем стиль для активного блока
+                  const targetBox = document.querySelector(`.${targetBoxClass}`); // переменная для хранения предыдущего выбранного блока
+                  
                   if (prevBlock) {
-                    prevBlock.style.backgroundColor = '';
+                    prevBlock.style.backgroundColor = ''; // изменяем стиль для активного блока
                   }
                   prevBlock = targetBox;
                   
@@ -131,20 +130,24 @@ parent.removeEventListener('touchend', handleTouchEnd,false);
                 if (menuItem.classList.contains('active')) {
                   currentBox = menuItem.getAttribute('href').slice(1);
                  // console.log('Текущий элемент:', currentBox);
-              
+                  let PrevCurrentBox = document.querySelector(`.${currentBox}`); //бокс с которого мы уходим
                   if (i > 0) {
-                    targetBoxClass = menuItems[i - 1].getAttribute('href').slice(1);
+                    targetBoxClass = menuItems[i - 1].getAttribute('href').slice(1); // бокс который должен стать активным при перематывании
                    // console.log('Предыдущий элемент:', targetBoxClass);
                    
                    
-                   if (targetBox.classList.contains('box1')) {
-                    targetBox.style.backgroundColor = '';
+                  
+                    let PrevTargetBoxClass = document.querySelector(`.${targetBoxClass}`);
+                     if (PrevTargetBoxClass.classList.contains('box1')) {
+                    PrevTargetBoxClass.style.backgroundColor = '';
+                    PrevCurrentBox.style.backgroundColor = ''; 
                   } 
                   else {
-                    targetBox.style.backgroundColor = "#ecefeb";
+                    PrevTargetBoxClass.style.backgroundColor = "#ecefeb";
+                    PrevCurrentBox.style.backgroundColor = '';
                   }       
 
-                    let PrevTargetBoxClass = document.querySelector(`.${targetBoxClass}`);
+
                     leftOffset = PrevTargetBoxClass.offsetLeft - menuWidth;
                      console.log(leftOffset);
                      parent.scrollTo({
@@ -217,6 +220,18 @@ parent.removeEventListener('touchend', handleTouchEnd,false);
 
 
           else {
+
+
+
+            // elementsBox.forEach((box) => {
+            //   box.removeEventListener('touchstart', handleTouchStart, false);
+            //   box.removeEventListener('touchmove', handleTouchMove, false);
+            //   box.removeEventListener('touchend', handleTouchEnd, false);
+            // }); 
+            parent.removeEventListener('touchstart', handleTouchStart,false);
+parent.removeEventListener('touchmove', handleTouchMove,false);
+parent.removeEventListener('touchend', handleTouchEnd,false);
+
             
             /////////////
             const activeLink = document.querySelector('.active');
@@ -241,11 +256,7 @@ parent.removeEventListener('touchend', handleTouchEnd,false);
 
               const elementsBox = document.querySelectorAll('[class*="box"]'); // выбираем все элементы с классом box
               // удаляем слушатели жестов
-              elementsBox.forEach((box) => {
-                box.removeEventListener('touchstart', handleTouchStart, false);
-                box.removeEventListener('touchmove', handleTouchMove, false);
-                box.removeEventListener('touchend', handleTouchEnd, false);
-              });
+              
 
 
           }    
