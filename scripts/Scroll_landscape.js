@@ -114,10 +114,54 @@ parent.removeEventListener('touchend', handleTouchEnd,false);
               
               function handleTouchEnd() {
 
-                const menuWidth = menu.offsetWidth;
-                const targetBoxClass = link.getAttribute('href').slice(1);
-                const targetBox = document.querySelector(`.${targetBoxClass}`);
-                const leftOffset = targetBox.offsetLeft - menuWidth ;
+              //  const menuWidth = menu.offsetWidth;
+              //  let currentBox;
+              //  // const targetBoxClass = link.getAttribute('href').slice(1);
+              //  //`const targetBox = document.querySelector(`.${targetBoxClass}`);
+              //  // const leftOffset = targetBox.offsetLeft - menuWidth ;
+              //  // Получаем элементы списка меню
+              //  let menuItems = document.querySelectorAll('#menu li a');
+              //  let countBox = menuItems.length; //количество блоков сайта
+                
+              //  console.log('Количество полученных элементов:', count);
+              //  for (var i = 0; i < menuItems.length; i++) { // Перебираем элементы и ищем активный класс
+              //       let menuItem = menuItems[i];  // Проверяем, содержит ли элемент класс "active"
+              //       if (menuItem.classList.contains('active')) {
+              //                 currentBox = menuItem.getAttribute('href').slice(1);  // Получаем значение атрибута "href"
+              //                 console.log(currentBox);  // Выводим результат в консоль
+              //                 break;   // Выход из цикла, если нужно получить только первый элемент с классом "active"
+              //  }
+              //      }
+
+              const menuWidth = menu.offsetWidth;
+              let currentBox;
+              let targetBox;
+              
+              let menuItems = document.querySelectorAll('#menu li a');
+              // let countBox = menuItems.length;
+              
+              // console.log('Количество полученных элементов:', countBox);
+              
+              for (var i = 0; i < menuItems.length; i++) {
+                let menuItem = menuItems[i];
+                if (menuItem.classList.contains('active')) {
+                  currentBox = menuItem.getAttribute('href').slice(1);
+                  console.log('Текущий элемент:', currentBox);
+              
+                  if (i > 0) {
+                    targetBox = menuItems[i - 1].getAttribute('href').slice(1);
+                    console.log('Предыдущий элемент:', targetBox);
+                  } else {
+                    console.log('Первый элемент не имеет предыдущего элемента.');
+                  }
+              
+                  break;
+                }
+              }
+              
+
+
+
 
                 if (dist > 0) {
                   console.log('Жест вправо');
