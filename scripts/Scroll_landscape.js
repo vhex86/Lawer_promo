@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
                  
                   const menu = document.querySelector('.mobile_menu');
                   const menuWidth = menu.offsetWidth;
-                  const leftOffset = targetBox.offsetLeft - menuWidth ;
+                  const leftOffset = targetBox.offsetLeft - menuWidth;
                   parent.scrollTo({
                     left: leftOffset,
                     top: 0,
@@ -113,63 +113,85 @@ parent.removeEventListener('touchend', handleTouchEnd,false);
               }
               
               function handleTouchEnd() {
+                const menu = document.querySelector('.mobile_menu');
+                const menuWidth = menu.offsetWidth;
+               
+                let currentBox;
+                let targetBoxClass;
+              
+                let menuItems = document.querySelectorAll('#menu li a');
+                // let targetBox;
+                let leftOffset; 
 
-              //  const menuWidth = menu.offsetWidth;
-              //  let currentBox;
-              //  // const targetBoxClass = link.getAttribute('href').slice(1);
-              //  //`const targetBox = document.querySelector(`.${targetBoxClass}`);
-              //  // const leftOffset = targetBox.offsetLeft - menuWidth ;
-              //  // Получаем элементы списка меню
-              //  let menuItems = document.querySelectorAll('#menu li a');
-              //  let countBox = menuItems.length; //количество блоков сайта
-                
-              //  console.log('Количество полученных элементов:', count);
-              //  for (var i = 0; i < menuItems.length; i++) { // Перебираем элементы и ищем активный класс
-              //       let menuItem = menuItems[i];  // Проверяем, содержит ли элемент класс "active"
-              //       if (menuItem.classList.contains('active')) {
-              //                 currentBox = menuItem.getAttribute('href').slice(1);  // Получаем значение атрибута "href"
-              //                 console.log(currentBox);  // Выводим результат в консоль
-              //                 break;   // Выход из цикла, если нужно получить только первый элемент с классом "active"
-              //  }
-              //      }
-
-              const menuWidth = menu.offsetWidth;
-              let currentBox;
-              let targetBox;
-              
-              let menuItems = document.querySelectorAll('#menu li a');
-              // let countBox = menuItems.length;
-              
-              // console.log('Количество полученных элементов:', countBox);
-              
-              for (var i = 0; i < menuItems.length; i++) {
+                // let countBox = menuItems.length;
+                // console.log('Количество полученных элементов:', countBox);
+              function LocatePositionInSiteForMoveRight(){
+                for (var i = 0; i < menuItems.length; i++) {
                 let menuItem = menuItems[i];
                 if (menuItem.classList.contains('active')) {
                   currentBox = menuItem.getAttribute('href').slice(1);
-                  console.log('Текущий элемент:', currentBox);
+                 // console.log('Текущий элемент:', currentBox);
               
                   if (i > 0) {
-                    targetBox = menuItems[i - 1].getAttribute('href').slice(1);
-                    console.log('Предыдущий элемент:', targetBox);
+                    targetBoxClass = menuItems[i - 1].getAttribute('href').slice(1);
+                   // console.log('Предыдущий элемент:', targetBoxClass);
+                   
+                   
+                   if (targetBox.classList.contains('box1')) {
+                    targetBox.style.backgroundColor = '';
+                  } 
+                  else {
+                    targetBox.style.backgroundColor = "#ecefeb";
+                  }       
+
+                    let PrevTargetBoxClass = document.querySelector(`.${targetBoxClass}`);
+                    leftOffset = PrevTargetBoxClass.offsetLeft - menuWidth;
+                     console.log(leftOffset);
+                     parent.scrollTo({
+                      left: leftOffset,
+                      top: 0,
+                      behavior: 'smooth'
+                    });
+
+
                   } else {
                     console.log('Первый элемент не имеет предыдущего элемента.');
                   }
               
                   break;
                 }
-              }
-              
+              }}
 
+              function moveActiveClassRightMove() {
+                const menuItems = document.querySelectorAll('#menu li a');
+              
+                for (let i = 0; i < menuItems.length; i++) {
+                  const menuItem = menuItems[i];
+              
+                  if (menuItem.classList.contains('active')) {
+                    // Добавляем условие для проверки, что не является первым пунктом меню
+                    if (i > 0) {
+                      menuItem.classList.remove('active');
+                      const previousMenuItem = menuItems[i - 1];
+                      previousMenuItem.classList.add('active');
+                    }
+              
+                    break;
+                  }
+                }
+              }
+               
+              
 
 
 
                 if (dist > 0) {
                   console.log('Жест вправо');
-                  // parent.scrollTo({
-                  //   left: leftOffset,
-                  //   top: 0,
-                  //   behavior: 'smooth'
-                  // });
+
+                   LocatePositionInSiteForMoveRight();
+                   moveActiveClassRightMove();
+                    
+                  
 
                   // Дополнительные действия при жесте вправо
                 
