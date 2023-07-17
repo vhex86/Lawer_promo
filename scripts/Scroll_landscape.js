@@ -7,14 +7,16 @@ document.addEventListener('DOMContentLoaded', function() {
   
   function scrollMain (){
     const parent = document.querySelector('#parent-container');
-      let mediaQuery = window.matchMedia('(min-width: 1024px) and (orientation:landscape)');
+    let mediaQuery = window.matchMedia('(min-width: 1024px) and (orientation:landscape)');
       handleTabletChange(mediaQuery); // добавляем эту строку
       mediaQuery.addListener(handleTabletChange);
   
       let startX = 0; // переменные для отслеживания перемещения пальца
       let startY = 0;
       let dist = 0;
-    
+      let prevBlock = null; 
+
+
       function handleTouchStart(event) {
         const firstTouch = event.touches[0];
         startX = firstTouch.clientX;
@@ -63,16 +65,24 @@ document.addEventListener('DOMContentLoaded', function() {
           currentBox = menuItem.getAttribute('href').slice(1);
          // console.log('Текущий элемент:', currentBox);
           let PrevCurrentBox = document.querySelector(`.${currentBox}`); //бокс с которого мы уходим
+          // prevBlock = PrevCurrentBox;
+          // console.log(prevBlock)
+          
           if (i > 0) {
             targetBoxClass = menuItems[i - 1].getAttribute('href').slice(1); // бокс который должен стать активным при перематывании
            // console.log('Предыдущий элемент:', targetBoxClass);
-           
+           menuItems[i - 1].classList.add('active');  
+           menuItems[i].classList.remove('active');  
            
           
             let PrevTargetBoxClass = document.querySelector(`.${targetBoxClass}`);
+           prevBlock = PrevTargetBoxClass;
+           console.log(prevBlock)
+         
              if (PrevTargetBoxClass.classList.contains('box1')) {
             PrevTargetBoxClass.style.backgroundColor = '';
             PrevCurrentBox.style.backgroundColor = ''; 
+            
           } 
           else {
             PrevTargetBoxClass.style.backgroundColor = "#ecefeb";
@@ -81,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
             leftOffset = PrevTargetBoxClass.offsetLeft - menuWidth;
-             console.log(leftOffset);
+            //  console.log(leftOffset);
              parent.scrollTo({
               left: leftOffset,
               top: 0,
@@ -97,46 +107,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }}
 
-      function moveActiveClassRightMove() {
-        const menuItems = document.querySelectorAll('#menu li a');
-      
-        for (let i = 0; i < menuItems.length; i++) {
-          const menuItem = menuItems[i];
-      
-          if (menuItem.classList.contains('active')) {
-            // Добавляем условие для проверки, что не является первым пунктом меню
-            if (i > 0) {
-              menuItem.classList.remove('active');
-              const previousMenuItem = menuItems[i - 1];
-              previousMenuItem.classList.add('active');
-            }
-      
-            break;
-          }
-        }
-      }
-       
       
 
 
 
         if (dist > 0) {
-          console.log('Жест вправо');
-
+          // console.log('Жест вправо');
            LocatePositionInSiteForMoveRight();
-           moveActiveClassRightMove();
             
-          
-
           // Дополнительные действия при жесте вправо
-        
-
-        } else if (dist < 0) {
+        } 
+        else if (dist < 0) {
           console.log('Жест влево');
       
           // Дополнительные действия при жесте влево
         }
-      
         startX = 0;
         startY = 0;
         dist = 0;
@@ -151,9 +136,8 @@ document.addEventListener('DOMContentLoaded', function() {
               parent.addEventListener('touchstart', handleTouchStart, false);
               parent.addEventListener('touchmove', handleTouchMove, false);
               parent.addEventListener('touchend', handleTouchEnd, false);
-            
-             
               /*********************  Промотка до выбранного блока при смене разрешения*/
+              
               //выбираем родительский контейнер
               const activeLink = document.querySelector('.active'); 
 
@@ -169,7 +153,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
               /*********************************** */
                                      
-              let prevBlock = null; //статус предыдущего выбранного блока, если блок не выбран то псевдо false 
                 
               
               document.querySelectorAll('.menu a').forEach(link => {
@@ -181,13 +164,17 @@ document.addEventListener('DOMContentLoaded', function() {
                   if (prevBlock) {
                     prevBlock.style.backgroundColor = ''; // изменяем стиль для активного блока
                   }
+                  console.log(prevBlock);
                   prevBlock = targetBox;
                   
                   if (targetBox.classList.contains('box1')) {
                     targetBox.style.backgroundColor = '';
+
                   } 
                   else {
+                    
                     targetBox.style.backgroundColor = "#ecefeb";
+                    
                   }    
                  
                   const menu = document.querySelector('.mobile_menu');
@@ -200,9 +187,6 @@ document.addEventListener('DOMContentLoaded', function() {
                   });
                 });
               });
-
-
-
             }
   
 
