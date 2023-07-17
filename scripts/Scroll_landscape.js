@@ -6,20 +6,155 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   function scrollMain (){
-  
+    const parent = document.querySelector('#parent-container');
       let mediaQuery = window.matchMedia('(min-width: 1024px) and (orientation:landscape)');
       handleTabletChange(mediaQuery); // добавляем эту строку
       mediaQuery.addListener(handleTabletChange);
   
-      function handleTabletChange(e){
+      let startX = 0; // переменные для отслеживания перемещения пальца
+      let startY = 0;
+      let dist = 0;
+    
+      function handleTouchStart(event) {
+        const firstTouch = event.touches[0];
+        startX = firstTouch.clientX;
+        startY = firstTouch.clientY;
+      }
+
+      function handleTouchMove(event) {
+        if (!startX || !startY) {
+          return;
+        }
       
+        const touch = event.touches[0];
+        const currentX = touch.clientX;
+        const currentY = touch.clientY;
+        const distX = currentX - startX;
+        const distY = currentY - startY;
+      
+        // Проверяем, если перемещение по оси Y больше, чем по оси X, то игнорируем жест
+        if (Math.abs(distY) > Math.abs(distX)) {
+          startX = 0;
+          startY = 0;
+          dist = 0;
+          return;
+        }
+      
+        dist = distX;
+      }
+
+      function handleTouchEnd() {
+        const menu = document.querySelector('.mobile_menu');
+        const menuWidth = menu.offsetWidth;
        
+        let currentBox;
+        let targetBoxClass;
+      
+        let menuItems = document.querySelectorAll('#menu li a');
+        // let targetBox;
+        let leftOffset; 
+
+        // let countBox = menuItems.length;
+        // console.log('Количество полученных элементов:', countBox);
+      function LocatePositionInSiteForMoveRight(){
+        for (var i = 0; i < menuItems.length; i++) {
+        let menuItem = menuItems[i];
+        if (menuItem.classList.contains('active')) {
+          currentBox = menuItem.getAttribute('href').slice(1);
+         // console.log('Текущий элемент:', currentBox);
+          let PrevCurrentBox = document.querySelector(`.${currentBox}`); //бокс с которого мы уходим
+          if (i > 0) {
+            targetBoxClass = menuItems[i - 1].getAttribute('href').slice(1); // бокс который должен стать активным при перематывании
+           // console.log('Предыдущий элемент:', targetBoxClass);
+           
+           
+          
+            let PrevTargetBoxClass = document.querySelector(`.${targetBoxClass}`);
+             if (PrevTargetBoxClass.classList.contains('box1')) {
+            PrevTargetBoxClass.style.backgroundColor = '';
+            PrevCurrentBox.style.backgroundColor = ''; 
+          } 
+          else {
+            PrevTargetBoxClass.style.backgroundColor = "#ecefeb";
+            PrevCurrentBox.style.backgroundColor = '';
+          }       
+
+
+            leftOffset = PrevTargetBoxClass.offsetLeft - menuWidth;
+             console.log(leftOffset);
+             parent.scrollTo({
+              left: leftOffset,
+              top: 0,
+              behavior: 'smooth'
+            });
+
+
+          } else {
+            console.log('Первый элемент не имеет предыдущего элемента.');
+          }
+      
+          break;
+        }
+      }}
+
+      function moveActiveClassRightMove() {
+        const menuItems = document.querySelectorAll('#menu li a');
+      
+        for (let i = 0; i < menuItems.length; i++) {
+          const menuItem = menuItems[i];
+      
+          if (menuItem.classList.contains('active')) {
+            // Добавляем условие для проверки, что не является первым пунктом меню
+            if (i > 0) {
+              menuItem.classList.remove('active');
+              const previousMenuItem = menuItems[i - 1];
+              previousMenuItem.classList.add('active');
+            }
+      
+            break;
+          }
+        }
+      }
+       
+      
+
+
+
+        if (dist > 0) {
+          console.log('Жест вправо');
+
+           LocatePositionInSiteForMoveRight();
+           moveActiveClassRightMove();
+            
+          
+
+          // Дополнительные действия при жесте вправо
+        
+
+        } else if (dist < 0) {
+          console.log('Жест влево');
+      
+          // Дополнительные действия при жесте влево
+        }
+      
+        startX = 0;
+        startY = 0;
+        dist = 0;
+      }
+      
+      
+      function handleTabletChange(e){
+             
           if(e.matches ) {
               
               // console.log("Разрешение больше 1024 и ориентация экрана landscape");
+              parent.addEventListener('touchstart', handleTouchStart, false);
+              parent.addEventListener('touchmove', handleTouchMove, false);
+              parent.addEventListener('touchend', handleTouchEnd, false);
+            
              
               /*********************  Промотка до выбранного блока при смене разрешения*/
-              const parent = document.querySelector('#parent-container'); //выбираем родительский контейнер
+              //выбираем родительский контейнер
               const activeLink = document.querySelector('.active'); 
 
               const hrefValue = activeLink.getAttribute('href').slice(1);
@@ -67,153 +202,6 @@ document.addEventListener('DOMContentLoaded', function() {
               });
 
 
-              ///////////****  обработка жестов влево-вправо на элементах box */
-              // выбираем все элементы box
-              let startX = 0; // переменные для отслеживания перемещения пальца
-              let startY = 0;
-              let dist = 0;
-              // Удаляем существующие слушатели событий touchstart, touchmove и touchend
-parent.removeEventListener('touchstart', handleTouchStart,false);
-parent.removeEventListener('touchmove', handleTouchMove,false);
-parent.removeEventListener('touchend', handleTouchEnd,false);
-
-
-              // добавляем слушателей на жесты к элементам box 
-                 parent.addEventListener('touchstart', handleTouchStart, false);
-                parent.addEventListener('touchmove', handleTouchMove, false);
-                parent.addEventListener('touchend', handleTouchEnd, false);
-              
-              function handleTouchStart(event) {
-                const firstTouch = event.touches[0];
-                startX = firstTouch.clientX;
-                startY = firstTouch.clientY;
-              }
-              
-              function handleTouchMove(event) {
-                if (!startX || !startY) {
-                  return;
-                }
-              
-                const touch = event.touches[0];
-                const currentX = touch.clientX;
-                const currentY = touch.clientY;
-                const distX = currentX - startX;
-                const distY = currentY - startY;
-              
-                // Проверяем, если перемещение по оси Y больше, чем по оси X, то игнорируем жест
-                if (Math.abs(distY) > Math.abs(distX)) {
-                  startX = 0;
-                  startY = 0;
-                  dist = 0;
-                  return;
-                }
-              
-                dist = distX;
-              }
-              
-              function handleTouchEnd() {
-                const menu = document.querySelector('.mobile_menu');
-                const menuWidth = menu.offsetWidth;
-               
-                let currentBox;
-                let targetBoxClass;
-              
-                let menuItems = document.querySelectorAll('#menu li a');
-                // let targetBox;
-                let leftOffset; 
-
-                // let countBox = menuItems.length;
-                // console.log('Количество полученных элементов:', countBox);
-              function LocatePositionInSiteForMoveRight(){
-                for (var i = 0; i < menuItems.length; i++) {
-                let menuItem = menuItems[i];
-                if (menuItem.classList.contains('active')) {
-                  currentBox = menuItem.getAttribute('href').slice(1);
-                 // console.log('Текущий элемент:', currentBox);
-                  let PrevCurrentBox = document.querySelector(`.${currentBox}`); //бокс с которого мы уходим
-                  if (i > 0) {
-                    targetBoxClass = menuItems[i - 1].getAttribute('href').slice(1); // бокс который должен стать активным при перематывании
-                   // console.log('Предыдущий элемент:', targetBoxClass);
-                   
-                   
-                  
-                    let PrevTargetBoxClass = document.querySelector(`.${targetBoxClass}`);
-                     if (PrevTargetBoxClass.classList.contains('box1')) {
-                    PrevTargetBoxClass.style.backgroundColor = '';
-                    PrevCurrentBox.style.backgroundColor = ''; 
-                  } 
-                  else {
-                    PrevTargetBoxClass.style.backgroundColor = "#ecefeb";
-                    PrevCurrentBox.style.backgroundColor = '';
-                  }       
-
-
-                    leftOffset = PrevTargetBoxClass.offsetLeft - menuWidth;
-                     console.log(leftOffset);
-                     parent.scrollTo({
-                      left: leftOffset,
-                      top: 0,
-                      behavior: 'smooth'
-                    });
-
-
-                  } else {
-                    console.log('Первый элемент не имеет предыдущего элемента.');
-                  }
-              
-                  break;
-                }
-              }}
-
-              function moveActiveClassRightMove() {
-                const menuItems = document.querySelectorAll('#menu li a');
-              
-                for (let i = 0; i < menuItems.length; i++) {
-                  const menuItem = menuItems[i];
-              
-                  if (menuItem.classList.contains('active')) {
-                    // Добавляем условие для проверки, что не является первым пунктом меню
-                    if (i > 0) {
-                      menuItem.classList.remove('active');
-                      const previousMenuItem = menuItems[i - 1];
-                      previousMenuItem.classList.add('active');
-                    }
-              
-                    break;
-                  }
-                }
-              }
-               
-              
-
-
-
-                if (dist > 0) {
-                  console.log('Жест вправо');
-
-                   LocatePositionInSiteForMoveRight();
-                   moveActiveClassRightMove();
-                    
-                  
-
-                  // Дополнительные действия при жесте вправо
-                
-
-                } else if (dist < 0) {
-                  console.log('Жест влево');
-              
-                  // Дополнительные действия при жесте влево
-                }
-              
-                startX = 0;
-                startY = 0;
-                dist = 0;
-              }
-              
-              /////////// ****  *************************/////////
- 
-
-
 
             }
   
@@ -223,14 +211,9 @@ parent.removeEventListener('touchend', handleTouchEnd,false);
 
 
 
-            // elementsBox.forEach((box) => {
-            //   box.removeEventListener('touchstart', handleTouchStart, false);
-            //   box.removeEventListener('touchmove', handleTouchMove, false);
-            //   box.removeEventListener('touchend', handleTouchEnd, false);
-            // }); 
             parent.removeEventListener('touchstart', handleTouchStart,false);
-parent.removeEventListener('touchmove', handleTouchMove,false);
-parent.removeEventListener('touchend', handleTouchEnd,false);
+            parent.removeEventListener('touchmove', handleTouchMove,false);
+            parent.removeEventListener('touchend', handleTouchEnd,false);
 
             
             /////////////
@@ -254,8 +237,6 @@ parent.removeEventListener('touchend', handleTouchEnd,false);
               });
                   
 
-              const elementsBox = document.querySelectorAll('[class*="box"]'); // выбираем все элементы с классом box
-              // удаляем слушатели жестов
               
 
 
