@@ -8,7 +8,9 @@ document.addEventListener('DOMContentLoaded', function() {
   function scrollMain (){
     const parent = document.querySelector('#parent-container');
     let mediaQuery = window.matchMedia('(min-width: 1024px) and (orientation:landscape)');
-      handleTabletChange(mediaQuery); // добавляем эту строку
+    const image = document.querySelector('#main_photo');
+    const imageContainer = document.querySelector('.avatar_john'); 
+    handleTabletChange(mediaQuery); // добавляем эту строку
       mediaQuery.addListener(handleTabletChange);
   
       let startX = 0; // переменные для отслеживания перемещения пальца
@@ -82,7 +84,9 @@ document.addEventListener('DOMContentLoaded', function() {
              if (PrevTargetBoxClass.classList.contains('box1')) {
             PrevTargetBoxClass.style.backgroundColor = '';
             PrevCurrentBox.style.backgroundColor = ''; 
-            
+            image.style.transform = 'rotate(-8deg)';
+        imageContainer.style.left = null;
+          
           } 
           else {
             PrevTargetBoxClass.style.backgroundColor = "#ecefeb";
