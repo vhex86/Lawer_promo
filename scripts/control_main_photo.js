@@ -13,18 +13,18 @@ function controlMainPhoto(){
             image.style.transform = 'scaleX(-1)';
             setTimeout(()=> { imageContainer.style.left = '-8rem';},1);
         });
-      });
+    });
       
-      const firstMenuItem = document.querySelector('#menu a');
-      firstMenuItem.addEventListener('click', () => {
+    const firstMenuItem = document.querySelector('#menu a');
+    firstMenuItem.addEventListener('click', () => {
         image.style.transform = 'rotate(-8deg)';
         imageContainer.style.left = null;
-      });
+    });
 
 
     mediaQuery.addListener(handleTabletChange);
 
-   handleTabletChange(mediaQuery);
+    handleTabletChange(mediaQuery);
 
     function handleTabletChange(e){
       
@@ -36,10 +36,10 @@ function controlMainPhoto(){
         
 
         }
-    else {
-        console.log('Удаляем слушателя');
+        else {
+            console.log('Удаляем слушателя');
       
-    }
+        }
     
     }
 }
