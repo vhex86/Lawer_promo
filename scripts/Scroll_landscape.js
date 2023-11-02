@@ -190,16 +190,30 @@ function scrollMain (){
             const activeLink = document.querySelector('.active'); 
             const hrefValue = activeLink.getAttribute('href').slice(1);
             const targetBoxResize = document.querySelector(`.${hrefValue}`);
-              
+            const menu = document.querySelector('.mobile_menu');
+            
+            parent.scrollTo({
+                left: targetBoxResize.offsetLeft - menu.offsetWidth,
+                top: 0,
+                behavior: 'smooth'
+            });
+    
             if (targetBoxResize.classList.contains('box1')  ) { targetBoxResize.style.backgroundColor = '';} //если выбран первый блок при смене разрешения не менять фон 
-            else { targetBoxResize.style.backgroundColor = '#ecefeb';} //Иначе если выбран другой блок меняем фон 
+            else { targetBoxResize.style.backgroundColor = '#ecefeb';
+          
+             
+          
+            } //Иначе если выбран другой блок меняем фон 
            
 
             /*********************************** */
-                                     
+                                                  
                 
               
             document.querySelectorAll('.menu a').forEach(link => {
+
+               
+
                 link.addEventListener('click', e => {
                     e.preventDefault();
                     const targetBoxClass = link.getAttribute('href').slice(1);
@@ -208,7 +222,7 @@ function scrollMain (){
                     if (prevBlock) {
                         prevBlock.style.backgroundColor = ''; // изменяем стиль для активного блока
                     }
-                    console.log(prevBlock);
+                    // console.log(prevBlock);
                     prevBlock = targetBox;
                   
                     if (targetBox.classList.contains('box1')) {
@@ -221,7 +235,7 @@ function scrollMain (){
                     
                     }    
                  
-                    const menu = document.querySelector('.mobile_menu');
+                    // const menu = document.querySelector('.mobile_menu');
                     const menuWidth = menu.offsetWidth;
                     const leftOffset = targetBox.offsetLeft - menuWidth;
                     parent.scrollTo({

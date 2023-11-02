@@ -37,7 +37,7 @@ function controlMainPhoto(){
 
         }
         else {
-            console.log('Удаляем слушателя');
+            // console.log('Удаляем слушателя');
       
         }
     

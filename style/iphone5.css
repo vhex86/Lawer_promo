@@ -87,7 +87,7 @@ a.active {
 .mobile_menu a.active:before{
 content: " ";
 /* font-size: 1.4rem; */
-width:1rem;
+width:.5rem;
 height:2rem;
 background-color: var(--warning);
 /* position: static; */
@@ -229,7 +229,8 @@ font-size: 1.7rem;
 height: 2.859696rem;
 background-color: var(--brand-color-light);
 position: fixed;
-color:var(--font-color-light);
+/* color:var(--font-color-light); */
+/* color:var(--brand-color); */
 
 bottom: 0.5rem;
 right: 0.5rem;
@@ -359,7 +360,7 @@ background-color: #e9eaed;
 
 
 .my_article .about_post{
-    font: 1.429848rem "Nunito_regular", Arial,sans-serif;
+    font: 1.429848rem "Nunito_light", Arial,sans-serif;
 }
 .wrapper div:nth-child(even){
 display: flex;
@@ -424,30 +425,6 @@ justify-items: center;
 align-items: center;
 }
 
-.communicate{
-
-    animation: 5s ease infinite float-y paused;
-    
-    animation-play-state: running;
-}
-
-
-.knowledge {
-    animation:  5s ease infinite float-x paused ;
-    animation-play-state: running;   
-}
-
-
-.heart{
-    animation:  5s ease infinite float-pulse paused;
-    animation-play-state: running;
-    
-}
-.rotateEvent {
-    animation:  2s ease infinite rotateEvent paused;
-    animation-play-state: running;
-
-}
 
  .avatar_john{
     flex: 1;
@@ -470,57 +447,16 @@ align-items: center;
     font-family: "Nunito_light";
 }
 
-@keyframes rotateEvent{
-
-    0%, 100% {
-        transform: rotate(0);
-    }
-    25% {
-        transform: rotate(-10deg);
-    }
-    50% {
-        transform: rotate(0);
-    }
-    75% {
-        transform: rotate(10deg);
-    }
-}
-
-
-@keyframes float-y  {
-0%, 100% {
-    transform: translateY(0);
-}
-50% {
-    transform: translateY(-10px);
-}}
-
-@keyframes float-x {
-    0%, 100% {
-        transform: translateX(0);
-    }
-    50% {
-        transform: translateX(-10px);
-    }
-
-} 
-
-@keyframes float-pulse {
-    0%,100% {
-        transform: scale(1, 1); 
-    }
-    50% {
-        transform: scale(1.1, 1.1);
-    }
-
-} 
 
 #Blog {
     position: relative;
 overflow: hidden;
 /* height: 100%; */
 margin-bottom: initial;
-height: 40vh;
+/* height: 40vh; */
+/* height: 100vh; */
+height: auto;
+margin-bottom: 4rem;
 }
 #Blog h3{
 
@@ -547,7 +483,7 @@ height: 40vh;
     animation-fill-mode: forwards;
    ;
   }
-  
+/*   
   @keyframes fadeAndScale {
     0% {
       opacity: 0.09;
@@ -561,7 +497,7 @@ height: 40vh;
       opacity: 0.09;
       transform: scale(0.8);
     }
-  }
+  } */
   .wrapper_blog{
       display: flex;
       flex-direction: column;
@@ -575,4 +511,122 @@ height: 40vh;
 }
 #job_history {
     margin-bottom: initial;
+    
+}
+.job_place {
+
+    margin-right: 1rem;
+    margin-left: 1rem;
+
+}
+
+.restorable_nano_content{ 
+    margin-right: initial !important;
+}
+
+.img-block{
+/* height: 40rem; */
+width: 100%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+color: var(--font-color-light);
+font-size: 2rem;
+font-family: "Nunito_light";
+}
+
+@keyframes animatedBackgroundToRight {
+    0% {
+      background-position: 50% 50%;
+      background-size: 100%;
+    }
+    100% {
+        background-position: 100% 50%;
+        background-size: 40%;
+
+    }
+  }
+@keyframes ReverseAnimatedBackgroundToRight {
+    0%{
+        background-position: 100% 50%;
+        background-size: 40%;
+
+    }
+    
+    100% {
+        background-position: 50% 50%;
+        background-size: 100%;
+
+    }
+
+}
+@keyframes animatedBackgroundToLeft {
+
+    0% {
+        background-position: 50% 50%;
+        background-size: 100%;
+      }
+      100% {
+          background-position: 0% 50%;
+          background-size: 40%;
+  
+      }
+}
+@keyframes reverseAnimatedBackgroundToLeft{
+
+}
+
+
+.img-communicate{
+background-image: url('/img/communicate.svg');
+background-position: center center;
+/* background-size: contain; */
+background-repeat: no-repeat;
+} 
+
+.img-communicate-animate{
+    animation: animatedBackgroundToRight 3s 1;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode:forwards;
+
+
+}
+.img-communicate-animate-reverse {
+    animation: ReverseAnimatedBackgroundToRight 3s 1;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode:forwards;
+}
+
+.img-block p {
+    color: var(--brand-color);
+}
+
+
+
+.img-knowledge {
+    background-image: url('/img/knowledge.svg');
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;       
+}
+.img-knowledge-animate {
+animation: animatedBackgroundToLeft 3s 1;
+animation-timing-function: ease-in-out;
+animation-fill-mode: forwards;
+}
+
+    .img-block span{ 
+    background-color: var(--brand-color-light);
+
+    font:1.429848rem "Nunito_Light", Arial,sans-serif;
+    text-align: left;
+    color: var(--font-color-light);
+    padding: 1rem;
+
+
+    border-radius: 0.2em;
+         text-align: center;
+         
+
 }

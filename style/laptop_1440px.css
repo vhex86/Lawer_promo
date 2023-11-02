@@ -1,0 +1,29 @@
+@media (min-width:1440px){
+
+    :root{
+
+        font-size: calc(0.2em + 1vw);
+
+        [class *= "box"] {
+            
+               min-width: 38rem;
+/* color: red; */
+
+          };
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
