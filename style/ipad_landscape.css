@@ -320,4 +320,9 @@ height: initial;
     height: 100%;
 }
 
+.img-block span{
+
+    font-size: 1rem;
+}
+
 }
